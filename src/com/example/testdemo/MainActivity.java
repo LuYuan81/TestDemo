@@ -22,7 +22,6 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
         BtnSendMsg = (Button) findViewById(R.id.Send);
         EdtMsgContent = (EditText) findViewById(R.id.editText3);
         EdtMsgNumber = (EditText) findViewById(R.id.editText2);
@@ -34,16 +33,14 @@ public class MainActivity extends Activity {
         		smsSender(Number, Msg);
         	}
         });
-        
-        
-        
+       
     }
 
     void smsSender(String phone, String message) {
     	SmsManager sms = SmsManager.getDefault();
-    	PendingIntent pi = PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), 0);
+    	//PendingIntent pi = PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), 0);
     	try {
-    		sms.sendTextMessage(phone, null, message, pi, null);
+    		sms.sendTextMessage(phone, null, message, null, null);
     	}catch(Exception e){
     		Log.e("SmsSending","SendException", e );
     	}
