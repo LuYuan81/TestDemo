@@ -17,6 +17,8 @@ public class MainActivity extends Activity {
 	private Button BtnSendMsg;
 	private EditText EdtMsgContent;
 	private EditText EdtMsgNumber;
+	
+	private Button BtnOpenActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +27,20 @@ public class MainActivity extends Activity {
         BtnSendMsg = (Button) findViewById(R.id.Send);
         EdtMsgContent = (EditText) findViewById(R.id.editText3);
         EdtMsgNumber = (EditText) findViewById(R.id.editText2);
+        
+        BtnOpenActivity = (Button) findViewById(R.id.button1);
        
         BtnSendMsg.setOnClickListener(new Button.OnClickListener() {
         	public void onClick(View arg0) {
         		String Msg = EdtMsgContent.getText().toString();
         		String Number = EdtMsgNumber.getText().toString();
         		smsSender(Number, Msg);
+        	}
+        });
+        
+        BtnOpenActivity.setOnClickListener(new Button.OnClickListener() {
+        	public void onClick(View arg0) {
+
         	}
         });
        
