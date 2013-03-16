@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.app.PendingIntent;
 import android.util.Log;
 
+
 public class MainActivity extends Activity {
 	
 	private Button BtnSendMsg;
@@ -19,6 +20,7 @@ public class MainActivity extends Activity {
 	private EditText EdtMsgNumber;
 	
 	private Button BtnOpenActivity;
+	private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +40,10 @@ public class MainActivity extends Activity {
         	}
         });
         
+        intent = new Intent(this, TestPhoneBook.class);
         BtnOpenActivity.setOnClickListener(new Button.OnClickListener() {
         	public void onClick(View arg0) {
+        		startActivity(intent);
 
         	}
         });
