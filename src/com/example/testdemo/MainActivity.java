@@ -33,6 +33,7 @@ public class MainActivity extends Activity {
 	private Intent intent;
 
 	Context mContext = null;
+	
 	private static final String[] PHONES_PROJECTION = new String[] {Phone.DISPLAY_NAME, Phone.NUMBER, Photo.PHOTO_ID,Phone.CONTACT_ID }; 
   
     /**联系人显示名称**/  
@@ -57,6 +58,7 @@ public class MainActivity extends Activity {
     private ArrayList<Bitmap> mContactsPhonto = new ArrayList<Bitmap>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+    	mContext = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         BtnSendMsg = (Button) findViewById(R.id.Send);
@@ -83,7 +85,15 @@ public class MainActivity extends Activity {
         BtnOpenActivity.setOnClickListener(new Button.OnClickListener() {
         	public void onClick(View arg0) {
         		getPhoneContacts();
-        		startActivity(intent);
+        		String x = mContactsName.get(0);
+        		
+        		Bundle mBundle = new Bundle();
+        		mBundle.putString("Data", x);
+        		Intent y = new Intent();    
+        		y.setClass(MainActivity.this, TestPhoneBook.class);    
+        		y.putExtras(mBundle); 
+        		
+        		startActivity(y);
 
         	}
         });
@@ -92,7 +102,7 @@ public class MainActivity extends Activity {
     private void getPhoneContacts() {  
         ContentResolver resolver = mContext.getContentResolver();  
 
-      
+        //Uri uri = Uri.parse("content://icc/adn");
         // 获取手机联系人  
         Cursor phoneCursor = resolver.query(Phone.CONTENT_URI, PHONES_PROJECTION, null, null, null);  
       
